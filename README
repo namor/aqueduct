@@ -1,0 +1,42 @@
+= Aqueduct
+
++Aqueduct+ performs sandboxing on HTML, CSS and Embeds. 
+
+To install, do:
+
+copy aqueduct plugin to vendor/plugins
+
+== HTML sandboxing
+
+* Append something in front of id's
+* Rails sanitization: Removes bad HTML with Rails's built-in sanitize method. Bad tags are removed completely, including their content.
+
+== Usage
+
+ class Comment < ActiveRecord::Base
+   html_sanitizer :field_name, :append => "sandbox"   #=> id's will be appended with sandbox_
+ end
+
+
+
+== CSS sandboxing
+== Usage
+
+ class Comment < ActiveRecord::Base
+   css_sanitizer :field_name, :append => "network_"  #=> CSS selectors will be appended with #network_
+ end
+
+
+== Unique features
+
+* Rails 2.1-ready.
+* It works with migrations. Columns are fetched when model is saved, not when the class is loaded.
+
+== TODO
+
+== Credits
+
+
+== License
+
+MIT License, just like Rails
