@@ -4,7 +4,7 @@
 
 To install, do:
 
-copy aqueduct plugin to vendor/plugins
+script/install plugin git@github.com:namor/aqueduct.git
 
 == HTML sandboxing
 
@@ -33,9 +33,10 @@ copy aqueduct plugin to vendor/plugins
 * It works with migrations. Columns are fetched when model is saved, not when the class is loaded.
 
 == TODO
+* Option to prevent XML namespaced tags from being stripped
+* Dynamic :append option
 
 == Credits
-
 
 == License
 
