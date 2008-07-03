@@ -4,7 +4,7 @@
 
 To install, do:
 
-script/install plugin git@github.com:namor/aqueduct.git
+script/plugin install git@github.com:namor/aqueduct.git
 
 == HTML sandboxing
 
