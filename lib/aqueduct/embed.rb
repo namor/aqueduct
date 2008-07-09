@@ -35,7 +35,7 @@ class Aqueduct::Embed
     embed_code = limit_width_and_height(code, options[:height], options[:width])
     
     # Sanitize embed code
-    # Aqueduct::HTML.new().sanitize(embed_code)
+    Aqueduct::HTML.new.sanitize(embed_code)
     return embed_code
   end
   
