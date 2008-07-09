@@ -40,16 +40,16 @@ class Aqueduct::Embed
   end
   
   def supported_services
-    %w(www.youtube.com documents.scribd.com)
+    %w(www.youtube.com youtube.com documents.scribd.com www.viddler.com viddler.com www.veoh.com veoh.com
+        www.vimeo.com vimeo.com video.google.com static.slideshare.net www.musicplaylist.us musicplaylist.us )
   end
   
 private
 
   def src_path_valid?(code)
     embed_tag = code.at("embed")
-    movie_src = code.at("object param[@name=movie]")
-    return false if embed_tag.nil? or movie_src.nil?
-    embed_tag['src'] == movie_src['value']    
+    return false if embed_tag.nil? or embed_tag['src'].empty?
+    return true
   end
   
   def src_path_supported?(code)
@@ -64,13 +64,13 @@ private
     object_tag = code.at("object")
     
     unless height.nil?
-      embed_tag['src'] = height if embed_tag['src'].to_i > height.to_i
-      object_tag['src'] = height if object_tag['src'].to_i > height.to_i
+      embed_tag['height'] = height if embed_tag['height'].to_i > height.to_i
+      object_tag['height'] = height if not object_tag.nil? and object_tag['height'].to_i > height.to_i
     end
     
     unless width.nil?
-      embed_tag['src'] = width if embed_tag['src'].to_i > width.to_i
-      object_tag['src'] = width if object_tag['src'].to_i > width.to_i
+      embed_tag['width'] = width if embed_tag['width'].to_i > width.to_i
+      object_tag['width'] = width if not object_tag.nil? and object_tag['width'].to_i > width.to_i
     end
 
     code.to_html
