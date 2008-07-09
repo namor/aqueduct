@@ -2,7 +2,7 @@ class Aqueduct::HTML
 
   # Options
    #   :append => 'z3_' # Used to scope CSS selectors.
-   #   :filters => ['remove_javascript_from_url'] # Filter javascript from url()
+   #   :formatted => true by default # Produce nice indented html output
    def initialize(options={})
      @options = { :append => "" }.merge options
      Aqueduct::RailsSanitizer.sanitized_allowed_attributes = "id"
