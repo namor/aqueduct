@@ -25,10 +25,17 @@ class Aqueduct::HTML
     @options[:formatted] == false ? @doc.to_html.gsub(/\r|\n/i,'') : @doc.to_html 
   end
   
+  def sandbox(input, appendum)
+    return "" input.empty?
+    @doc = Hpricot(input)
+    append_id(appendum) unless appendum.empty?
+    @doc.to_html
+  end
+  
 protected
   
-  def append_id(id)
-    (@doc/'[@id]').each { |e| e.set_attribute('id', @options[:append].to_s + "_#{e.attributes['id']}" )  }
+  def append_id(appendum)
+    (@doc/'[@id]').each { |e| e.set_attribute('id', appendum.to_s + "_#{e.attributes['id']}" )  }
   end
   
   def remove_attributes(attributes = [] )

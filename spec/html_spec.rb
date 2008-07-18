@@ -4,7 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/aqueduct')
 describe "Aqueduct::HTML" do
   
   before(:each) do
-    @parser = Aqueduct::HTML.new(:append => '#network_xyz', :formatted => false)
+    @parser = Aqueduct::HTML.new(:append => 'network_xyz', :formatted => false)
   end
 
 # Valid HTML - Invalid Content
@@ -55,6 +55,16 @@ describe "Aqueduct::HTML" do
     @parser.sanitize(input).should be_empty
   end
   
+  it "Should sandbox id's" do
+    input = '<span id="king"></span>'
+    @parser.sanitize(input).should == '<span id="network_xyz_king"></span>'
+  end
+  
+  it "should be able to run sandboxing seperately"
+    input = '<span id="king"></span>'
+    @parser.sandbox(input, "pop").should == '<span id="pop_king"></span>'
+  end
+
 
 # Invalid HTML (Broken tags)
 
