@@ -26,7 +26,7 @@ class Aqueduct::HTML
   end
   
   def sandbox(input, appendum)
-    return "" input.empty?
+    return "" if input.empty?
     @doc = Hpricot(input)
     append_id(appendum) unless appendum.empty?
     @doc.to_html

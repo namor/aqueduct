@@ -55,12 +55,12 @@ describe "Aqueduct::HTML" do
     @parser.sanitize(input).should be_empty
   end
   
-  it "Should sandbox id's" do
+  it "Sandbox ids" do
     input = '<span id="king"></span>'
     @parser.sanitize(input).should == '<span id="network_xyz_king"></span>'
   end
   
-  it "should be able to run sandboxing seperately"
+  it "Run sandboxing seperately" do
     input = '<span id="king"></span>'
     @parser.sandbox(input, "pop").should == '<span id="pop_king"></span>'
   end
